@@ -8,7 +8,7 @@
     <div v-if="isPersona" class="space-y-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="flex flex-col">
-          <label for="nombres" class="mb-2 font-semibold text-gray-700">Nombres *</label>
+          <label for="nombres" class="mb-2 font-semibold text-gray-700">Nombres <label class="mb-2 font-semibold text-red-500">*</label></label>
           <InputText 
             id="nombres"
             v-model="formData.nombres"
@@ -19,7 +19,7 @@
         </div>
         
         <div class="flex flex-col">
-          <label for="apellido_paterno" class="mb-2 font-semibold text-gray-700">Apellido Paterno *</label>
+          <label for="apellido_paterno" class="mb-2 font-semibold text-gray-700">Apellido Paterno </label>
           <InputText 
             id="apellido_paterno"
             v-model="formData.apellido_paterno"
@@ -30,7 +30,7 @@
         </div>
         
         <div class="flex flex-col">
-          <label for="apellido_materno" class="mb-2 font-semibold text-gray-700">Apellido Materno *</label>
+          <label for="apellido_materno" class="mb-2 font-semibold text-gray-700">Apellido Materno </label>
           <InputText 
             id="apellido_materno"
             v-model="formData.apellido_materno"
@@ -41,7 +41,7 @@
         </div>
         
         <div class="flex flex-col">
-          <label for="carnet_identidad" class="mb-2 font-semibold text-gray-700">Carnet de Identidad *</label>
+          <label for="carnet_identidad" class="mb-2 font-semibold text-gray-700">Carnet de Identidad <label class="mb-2 font-semibold text-red-500">*</label></label>
           <InputText 
             id="carnet_identidad"
             v-model="formData.carnet_identidad"
@@ -52,7 +52,7 @@
         </div>
         
         <div class="flex flex-col">
-          <label for="telefono" class="mb-2 font-semibold text-gray-700">Teléfono *</label>
+          <label for="telefono" class="mb-2 font-semibold text-gray-700">Teléfono </label>
           <InputText 
             id="telefono"
             v-model="formData.telefono"
@@ -63,7 +63,7 @@
         </div>
         
         <div class="flex flex-col">
-          <label for="celular" class="mb-2 font-semibold text-gray-700">Celular *</label>
+          <label for="celular" class="mb-2 font-semibold text-gray-700">Celular <label class="mb-2 font-semibold text-red-500">*</label></label>
           <InputText 
             id="celular"
             v-model="formData.celular"
@@ -75,7 +75,7 @@
       </div>
       
       <div class="flex flex-col">
-        <label for="correo_electronico" class="mb-2 font-semibold text-gray-700">Correo Electrónico *</label>
+        <label for="correo_electronico" class="mb-2 font-semibold text-gray-700">Correo Electrónico</label>
         <InputText 
           id="correo_electronico"
           v-model="formData.correo_electronico"
@@ -87,7 +87,7 @@
       </div>
       
       <div class="flex flex-col">
-        <label for="direccion" class="mb-2 font-semibold text-gray-700">Dirección *</label>
+        <label for="direccion" class="mb-2 font-semibold text-gray-700">Dirección <label class="mb-2 font-semibold text-red-500">*</label></label>
         <Textarea 
           id="direccion"
           v-model="formData.direccion"
@@ -257,7 +257,7 @@ const formData = computed({
 })
 
 const isFormValid = computed(() => {
-  return store.isStep2Complete && Object.keys(errors.value).length === 0
+  return Object.keys(errors.value).length === 0
 })
 
 // Validación en tiempo real
@@ -270,14 +270,15 @@ function validateForm() {
   
   if (isPersona.value) {
     if (!formData.value.nombres) errors.value.nombres = 'Los nombres son requeridos'
-    if (!formData.value.apellido_paterno) errors.value.apellido_paterno = 'El apellido paterno es requerido'
-    if (!formData.value.apellido_materno) errors.value.apellido_materno = 'El apellido materno es requerido'
+    // if (!formData.value.apellido_paterno) errors.value.apellido_paterno = 'El apellido paterno es requerido'
+    // if (!formData.value.apellido_materno) errors.value.apellido_materno = 'El apellido materno es requerido'
     if (!formData.value.carnet_identidad) errors.value.carnet_identidad = 'El carnet de identidad es requerido'
-    if (!formData.value.telefono) errors.value.telefono = 'El teléfono es requerido'
+    // if (!formData.value.telefono) errors.value.telefono = 'El teléfono es requerido'
     if (!formData.value.celular) errors.value.celular = 'El celular es requerido'
-    if (!formData.value.correo_electronico) {
-      errors.value.correo_electronico = 'El correo electrónico es requerido'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.value.correo_electronico)) {
+    // if (!formData.value.correo_electronico) {
+
+      // errors.value.correo_electronico = 'El correo electrónico es requerido'
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.value.correo_electronico)) {
       errors.value.correo_electronico = 'El correo electrónico no es válido'
     }
     if (!formData.value.direccion) errors.value.direccion = 'La dirección es requerida'

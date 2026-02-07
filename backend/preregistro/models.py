@@ -22,6 +22,7 @@ class BasePreregistro(models.Model):
     confirmado = models.BooleanField(default=False)
     
     class Meta:
+        db_table = 'preregistro'
         abstract = True
 
 
